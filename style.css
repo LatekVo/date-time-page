@@ -1,7 +1,13 @@
 body {
     padding: 0;
     margin: 0;
-    background-color: white;
+    background: repeating-linear-gradient(
+        -45deg,
+        beige,
+        rgb(221, 221, 198) 30px,
+        rgb(204, 186, 153) 30px,
+        rgb(175, 160, 131) 60px
+      );
 }
 
 #center-wrapper {
@@ -55,15 +61,56 @@ body {
     aspect-ratio: 1/1;
     background-color: white;
     border: 1px solid;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#clock-container > * {
+    background-color: black;
 }
 
 #clock-center {
-    position: relative;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 5px;
     height: 5px;
-    background-color: black;
     border-radius: 50%;
+}
+
+.arm {
+    position: absolute;
+    transform: translateY(-50%);
+}
+
+#clock-arm-hour {
+    height: 8vh;
+    width: 3px;
+}
+
+#clock-arm-minute {
+    height: 9vh;
+    width: 2px;
+}
+
+#clock-arm-second {
+    height: 10vh;
+    width: 1px;
+}
+
+.clock-indicator-path {
+    position: absolute;
+    grid-template-columns: repeat(12, 40px);
+    background-color: black;
+    width: 2px;
+    height: 8px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -12.5vh);
+}
+
+.clock-indicator-path:nth-of-type(2) {
+    transform: rotate(30deg);
 }

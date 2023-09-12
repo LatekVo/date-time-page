@@ -100,17 +100,28 @@ body {
     width: 1px;
 }
 
-.clock-indicator-path {
-    position: absolute;
-    grid-template-columns: repeat(12, 40px);
-    background-color: black;
-    width: 2px;
-    height: 8px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -12.5vh);
+#clock-indicator-path {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.clock-indicator-path:nth-of-type(2) {
-    transform: rotate(30deg);
+#clock-indicator-path > * {
+    position: absolute;
+    background-color: black;
+}
+
+#clock-indicator-path > .small {
+    width: 1px;
+    height: 7px;
+    transform: translate(-50%, -12.1vh);
+}
+
+#clock-indicator-path > .large {
+    width: 2px;
+    height: 10px;
+    transform: translate(-50%, -12vh);
 }

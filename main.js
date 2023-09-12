@@ -4,6 +4,7 @@ let clockHandler = document.getElementById('clock-container');
 let clockHandlerHour = document.getElementById('clock-arm-hour');
 let clockHandlerMinute = document.getElementById('clock-arm-minute');
 let clockHandlerSecond = document.getElementById('clock-arm-second');
+let clockIndicatorPath = document.getElementById('clock-indicator-path');
 
 let dateOptions = { 
     weekday: 'long', 
@@ -22,7 +23,26 @@ setInterval(() => {
     let hourDeg = dateObject.getHours() + (dateObject.getMinutes() / 60);
 
     clockHandlerHour.style.rotate = `${hourDeg*30}deg`;
-    clockHandlerMinute.style.rotate = `${minuteDeg*6}deg`
-    clockHandlerSecond.style.rotate = `${secondDeg*6}deg`
+    clockHandlerMinute.style.rotate = `${minuteDeg*6}deg`;
+    clockHandlerSecond.style.rotate = `${secondDeg*6}deg`;
 
 }, 100);
+
+let initiateClock = () => {
+    for(let li = 0; li < 12; li++) {
+        let ldeg = li * 30;
+        let lindicator = document.createElement('div');
+        lindicator.style.rotate = `${ldeg}deg`;
+        lindicator.classList.add('large');
+        clockIndicatorPath.appendChild(lindicator);
+        for(let si = 0; si < 4; si++) {
+            let sdeg = ldeg + (si + 1) * 6;
+            let sindicator = document.createElement('div');
+            sindicator.style.rotate = `${sdeg}deg`;
+            sindicator.classList.add('small');
+            clockIndicatorPath.appendChild(sindicator);
+        }
+    }
+}
+
+initiateClock();

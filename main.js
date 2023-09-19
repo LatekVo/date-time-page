@@ -1,6 +1,5 @@
 let dateHandler = document.getElementById('date-container');
 let timeHandler = document.getElementById('time-container');
-let clockHandler = document.getElementById('clock-container');
 let clockHandlerHour = document.getElementById('clock-arm-hour');
 let clockHandlerMinute = document.getElementById('clock-arm-minute');
 let clockHandlerSecond = document.getElementById('clock-arm-second');
@@ -16,7 +15,7 @@ let dateOptions = {
 setInterval(() => {
     let dateObject = new Date();
     dateHandler.innerHTML = dateObject.toLocaleDateString('pl-PL', dateOptions);
-    timeHandler.innerHTML = `${dateObject.toLocaleTimeString('pl-PL')}.${dateObject.getMilliseconds().toString()[0]}`;
+    timeHandler.innerHTML = `${dateObject.toLocaleTimeString('pl-PL')}`;
 
     let secondDeg = dateObject.getSeconds();
     let minuteDeg = dateObject.getMinutes() + (dateObject.getSeconds() / 60);
@@ -26,23 +25,23 @@ setInterval(() => {
     clockHandlerMinute.style.rotate = `${minuteDeg*6}deg`;
     clockHandlerSecond.style.rotate = `${secondDeg*6}deg`;
 
-}, 100);
+}, 50);
 
-let initiateClock = () => {
-    for(let li = 0; li < 12; li++) {
-        let ldeg = li * 30;
-        let lindicator = document.createElement('div');
-        lindicator.style.rotate = `${ldeg}deg`;
-        lindicator.classList.add('large');
-        clockIndicatorPath.appendChild(lindicator);
-        for(let si = 0; si < 4; si++) {
-            let sdeg = ldeg + (si + 1) * 6;
-            let sindicator = document.createElement('div');
-            sindicator.style.rotate = `${sdeg}deg`;
-            sindicator.classList.add('small');
-            clockIndicatorPath.appendChild(sindicator);
-        }
+// draw clock markings
+for(let li = 0; li < 12; li++) {
+    let ldeg = li * 30;
+    let lindicator = document.createElement('div');
+    lindicator.style.rotate = `${ldeg}deg`;
+    lindicator.classList.add('large');
+    clockIndicatorPath.appendChild(lindicator);
+    for(let si = 0; si < 4; si++) {
+        let sdeg = ldeg + (si + 1) * 6;
+        let sindicator = document.createElement('div');
+        sindicator.style.rotate = `${sdeg}deg`;
+        sindicator.classList.add('small');
+        clockIndicatorPath.appendChild(sindicator);
     }
 }
 
-initiateClock();
+//.{dateObject.getMilliseconds().toString()[0]}`;
+// + (parseInt(dateObject.getMilliseconds().toString()[0]) / 10);
